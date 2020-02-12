@@ -1,0 +1,67 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>ce0bc4e8-6766-42a8-9b55-05628f12785e</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>Betäubungsmittel_buchführung.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>Betäubungsmittel_buchführung</Name>
+    <RootNamespace>Betäubungsmittel_buchführung</RootNamespace>
+    <InterpreterId>MSBuild|BTM|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>Pytest</TestFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="algo_test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Betäubungsmittel_buchführung.py" />
+    <Compile Include="BtM_gui.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="BTM\">
+      <Id>BTM</Id>
+      <Version>3.8</Version>
+      <Description>BTM (Python 3.8 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BTM\" />
+    <Folder Include="BTM\Lib\" />
+    <Folder Include="BTM\Lib\site-packages\" />
+    <Folder Include="BTM\Lib\site-packages\pyqt5_tools\" />
+    <Folder Include="BTM\Lib\site-packages\pyqt5_tools\Qt\" />
+    <Folder Include="BTM\Lib\site-packages\pyqt5_tools\Qt\bin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BTM\Lib\site-packages\pyqt5_tools\Qt\bin\designer.exe" />
+    <Content Include="BtM_gui.ui" />
+    <Content Include="Info.yaml" />
+    <Content Include="Test_logbuch.yaml" />
+    <Content Include="Test.yaml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
