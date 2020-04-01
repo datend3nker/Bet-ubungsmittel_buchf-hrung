@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'BtM_gui.ui'
+# Form implementation generated from reading ui file 'BtM_temp.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
@@ -126,7 +126,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.pushButton_EintragLoeschen, 4, 4, 1, 1)
         self.treeWidget = QtWidgets.QTreeWidget(self.centralwidget)
         self.treeWidget.setObjectName("treeWidget")
-        self.treeWidget.headerItem().setText(0, "1")
+        self.treeWidget.headerItem().setText(0, "Name")
         self.gridLayout.addWidget(self.treeWidget, 3, 1, 1, 1)
         self.radioButton_kilogramm = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_kilogramm.setObjectName("radioButton_kilogramm")

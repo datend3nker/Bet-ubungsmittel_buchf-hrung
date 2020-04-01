@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2020</width>
+    <height>622</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>BtM Buchhalter</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="1">
+     <widget class="QRadioButton" name="radioButton_gramm">
+      <property name="text">
+       <string>Gramm</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="LogbuchLabel">
+      <property name="text">
+       <string>Logbuch:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="3">
+     <widget class="QTreeWidget" name="treeWidget">
+      <column>
+       <property name="text">
+        <string notr="true">Name</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="ProjektnameLabel">
+      <property name="text">
+       <string>Projektname:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="label_pfad">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" rowspan="2" colspan="3">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="minimumSize">
+       <size>
+        <width>1650</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>1650</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_logbuch">
+       <attribute name="icon">
+        <iconset theme="lol">
+         <normaloff>.</normaloff>.</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Logbuch</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="3">
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Berechnen</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="4">
+         <widget class="QTableWidget" name="tableWidget">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>1630</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>1650</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>false</bool>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="columnCount">
+           <number>9</number>
+          </property>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>175</number>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>175</number>
+          </attribute>
+          <attribute name="verticalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderMinimumSectionSize">
+           <number>50</number>
+          </attribute>
+          <attribute name="verticalHeaderDefaultSectionSize">
+           <number>50</number>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Lfd. Nr.</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Datum</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Anfangsbestand</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Theor. Zugang</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Prakt. Zugang</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Arbeitsverlust</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Abgang</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Aktueller 
+ Bestand</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Bemerkung</string>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButton_NeuerEintrag">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Neuer Eintrag</string>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButton_EintragLoeschen">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>300</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Letzten Eintrag löschen</string>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_analytics">
+       <attribute name="title">
+        <string>Analytics</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableWidget_2"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QRadioButton" name="radioButton_kilogramm">
+      <property name="text">
+       <string>Kilogramm</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_projekt">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2020</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatei">
+    <property name="title">
+     <string>Datei</string>
+    </property>
+    <addaction name="actionArbeitzplatz_ffnen"/>
+    <addaction name="separator"/>
+    <addaction name="actionNeuer_Arbeitzplatz"/>
+    <addaction name="actionNeues_Projekt"/>
+    <addaction name="actionNeues_Produkt"/>
+    <addaction name="actionNeue_Stufe"/>
+    <addaction name="actionNeues_Logbuch"/>
+    <addaction name="separator"/>
+    <addaction name="actionSpeichern"/>
+    <addaction name="actionBeenden"/>
+   </widget>
+   <widget class="QMenu" name="menuWerkzeuge">
+    <property name="title">
+     <string>Werkzeuge</string>
+    </property>
+    <widget class="QMenu" name="menuZelle_einf_rben">
+     <property name="title">
+      <string>Zelle einfärben</string>
+     </property>
+    </widget>
+    <addaction name="actionBerechnen"/>
+    <addaction name="menuZelle_einf_rben"/>
+   </widget>
+   <addaction name="menuDatei"/>
+   <addaction name="menuWerkzeuge"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNeues_Projekt">
+   <property name="text">
+    <string>Neues Projekt</string>
+   </property>
+   <property name="statusTip">
+    <string>Erstellt ein neues Projekt(Ordner)</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
+  </action>
+  <action name="actionProjekt_ffnen">
+   <property name="text">
+    <string>Projekt öffnen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
+  </action>
+  <action name="actionNeues_Logbuch">
+   <property name="text">
+    <string>Neues Logbuch</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionLogbuch_laden">
+   <property name="text">
+    <string>Logbuch öffnen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionLogbuch_speichen">
+   <property name="text">
+    <string>Logbuch speichen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionNeues_Projekt_2">
+   <property name="text">
+    <string>Neues Projekt</string>
+   </property>
+  </action>
+  <action name="actionLogbuch_speichern_unter">
+   <property name="text">
+    <string>Logbuch speichern unter</string>
+   </property>
+  </action>
+  <action name="actionBerechnen">
+   <property name="text">
+    <string>Berechnen</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionNeues_Produkt">
+   <property name="text">
+    <string>Neues Produkt</string>
+   </property>
+  </action>
+  <action name="actiontes">
+   <property name="text">
+    <string>tes</string>
+   </property>
+  </action>
+  <action name="actionNeuer_Arbeitzplatz">
+   <property name="text">
+    <string>Neuer Arbeitzplatz</string>
+   </property>
+  </action>
+  <action name="actionArbeitzplatz_ffnen">
+   <property name="text">
+    <string>Arbeitzplatz öffnen</string>
+   </property>
+  </action>
+  <action name="actionSpeichern">
+   <property name="text">
+    <string>Speichern</string>
+   </property>
+  </action>
+  <action name="actionBeenden">
+   <property name="text">
+    <string>Beenden</string>
+   </property>
+  </action>
+  <action name="actiontemp">
+   <property name="text">
+    <string>temp</string>
+   </property>
+  </action>
+  <action name="actionNeue_Stufe">
+   <property name="text">
+    <string>Neue Stufe</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1806</width>
+    <height>457</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>BtM Buchhalter</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="4" column="5">
+     <widget class="QPushButton" name="pushButton_NeuerEintrag">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Neuer Eintrag</string>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="6">
+     <widget class="QPushButton" name="pushButton_speicher">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Speichern</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="3">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="4" colspan="3">
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>1650</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="columnCount">
+       <number>9</number>
+      </property>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>175</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>175</number>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>50</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>50</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Lfd. Nr.</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Datum</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Anfangsbestand</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Theor. Zugang</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Prakt. Zugang</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Arbeitsverlust</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Abgang</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Aktueller 
+ Bestand</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Bemerkung</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QRadioButton" name="radioButton_gramm">
+      <property name="text">
+       <string>Gramm</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="7">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="6">
+     <widget class="QLabel" name="label_pfad">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="7">
+     <spacer name="horizontalSpacer_5">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="4">
+     <widget class="QPushButton" name="pushButton_EintragLoeschen">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Letzten Eintrag löschen</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QTreeWidget" name="treeWidget">
+      <column>
+       <property name="text">
+        <string notr="true">Name</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QRadioButton" name="radioButton_kilogramm">
+      <property name="text">
+       <string>Kilogramm</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="5">
+     <widget class="QLabel" name="ProjektnameLabel">
+      <property name="text">
+       <string>Projektname:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5">
+     <widget class="QLabel" name="LogbuchLabel">
+      <property name="text">
+       <string>Logbuch:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QLabel" name="label_projekt">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="7">
+     <spacer name="horizontalSpacer_6">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1806</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatei">
+    <property name="title">
+     <string>Datei</string>
+    </property>
+    <addaction name="actionNeues_Projekt"/>
+    <addaction name="actionProjekt_ffnen"/>
+    <addaction name="separator"/>
+    <addaction name="actionNeues_Logbuch"/>
+    <addaction name="actionLogbuch_laden"/>
+    <addaction name="actionLogbuch_speichen"/>
+    <addaction name="actionLogbuch_speichern_unter"/>
+   </widget>
+   <widget class="QMenu" name="menuWerkzeuge">
+    <property name="title">
+     <string>Werkzeuge</string>
+    </property>
+    <addaction name="actionBerechnen"/>
+   </widget>
+   <addaction name="menuDatei"/>
+   <addaction name="menuWerkzeuge"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNeues_Projekt">
+   <property name="text">
+    <string>Neues Projekt</string>
+   </property>
+   <property name="statusTip">
+    <string>Erstellt ein neues Projekt(Ordner)</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
+  </action>
+  <action name="actionProjekt_ffnen">
+   <property name="text">
+    <string>Projekt öffnen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
+  </action>
+  <action name="actionNeues_Logbuch">
+   <property name="text">
+    <string>Neues Logbuch</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionLogbuch_laden">
+   <property name="text">
+    <string>Logbuch öffnen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionLogbuch_speichen">
+   <property name="text">
+    <string>Logbuch speichen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionNeues_Projekt_2">
+   <property name="text">
+    <string>Neues Projekt</string>
+   </property>
+  </action>
+  <action name="actionLogbuch_speichern_unter">
+   <property name="text">
+    <string>Logbuch speichern unter</string>
+   </property>
+  </action>
+  <action name="actionBerechnen">
+   <property name="text">
+    <string>Berechnen</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

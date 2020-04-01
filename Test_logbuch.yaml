@@ -1,12 +1,22 @@
 Info:
   Einheit: G
 Eintrag_0:
-  Lfd_Nr: '6'
-  Datum: 10/10/2019
-  Anfangsbestand: 2,8400
-  Theor_Zugang: '0'
-  Prakt_Zugang: '0'
-  Arbeitsverlust: 0,9718
-  Abgang: '0'
-  Aktueller_Bestand: 1,8682
-  Bemerkung: ' '
+  Lfd_Nr: '0.0'
+  Datum: '0.0'
+  Anfangsbestand: '500'
+  Theor_Zugang: '0.0'
+  Prakt_Zugang: '5'
+  Arbeitsverlust: '9'
+  Abgang: '9'
+  Aktueller_Bestand: '487.0'
+  Bemerkung: '0.0'
+Eintrag_1:
+  Lfd_Nr: '0.0'
+  Datum: '0.0'
+  Anfangsbestand: '487.0'
+  Theor_Zugang: '0.0'
+  Prakt_Zugang: '0.0'
+  Arbeitsverlust: '0.0'
+  Abgang: '0.0'
+  Aktueller_Bestand: '487.0'
+  Bemerkung: '0.0'

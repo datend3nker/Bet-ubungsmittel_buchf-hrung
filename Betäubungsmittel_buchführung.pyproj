@@ -27,7 +27,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Betäubungsmittel_buchführung.py" />
-    <Compile Include="BtM_gui.py" />
+    <Compile Include="Btm_temp.py" />
+    <Compile Include="Gui_ui\BtM_gui.py" />
+    <Compile Include="BtM_Manager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Gui_ui\Neuer_Arbeitsplatz.py" />
+    <Compile Include="Gui_ui\test.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="BTM\">
@@ -47,13 +53,22 @@
     <Folder Include="BTM\Lib\site-packages\pyqt5_tools\" />
     <Folder Include="BTM\Lib\site-packages\pyqt5_tools\Qt\" />
     <Folder Include="BTM\Lib\site-packages\pyqt5_tools\Qt\bin\" />
+    <Folder Include="Gui_ui\" />
+    <Folder Include="__pycache__\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="BTM\Lib\site-packages\pyqt5_tools\Qt\bin\designer.exe" />
-    <Content Include="BtM_gui.ui" />
+    <Content Include="BtM_temp.ui" />
+    <Content Include="Gui_ui\BtM_temp.ui" />
+    <Content Include="Gui_ui\BtM_gui.ui" />
+    <Content Include="Gui_ui\Neuer_Arbeitsplatz.ui" />
+    <Content Include="Gui_ui\test.ui" />
     <Content Include="Info.yaml" />
     <Content Include="Test_logbuch.yaml" />
     <Content Include="Test.yaml" />
+    <Content Include="__pycache__\BtM_gui.cpython-38.pyc" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
