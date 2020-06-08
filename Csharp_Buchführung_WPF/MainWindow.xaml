@@ -1,0 +1,57 @@
+﻿<Window x:Class="Csharp_Buchführung_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Csharp_Buchführung_WPF"
+        mc:Ignorable="d"
+        Title="Btm-Manager" Height="450" Width="800" Background="#FF7E7E7E">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Datei">
+                
+            </MenuItem>
+            <MenuItem Header="Werkzeuge">
+                
+            </MenuItem>
+        </Menu>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TreeView Margin="5" Grid.Row="1" Grid.RowSpan="7"/>
+            <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8"/>
+            <Button Height="35" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
+            <Button Height="35" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag"/>
+            <Button Height="35" Grid.Column="5" Grid.Row="8" Content="Speichern"/>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
