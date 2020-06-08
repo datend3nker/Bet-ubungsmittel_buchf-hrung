@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Csharp_Buchführung_WPF"
         mc:Ignorable="d"
-        Title="Btm-Manager" Height="450" Width="800" Background="#FF7E7E7E">
+        Title="Btm-Manager" Height="741" Width="1379" Background="Gray">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
-                
+                <MenuItem Header="Datenbank laden"/>
+                <MenuItem Header="Daten übertragen"/>
+                <Separator/>
+                <MenuItem Header="Neue Stufe"/>
+                <MenuItem Header="Neues Logbuch"/>
+                <Separator/>
+                <MenuItem Header="Beenden"/>
             </MenuItem>
             <MenuItem Header="Werkzeuge">
-                
+                <MenuItem Header="Berechnen"/>
+                <MenuItem Header="Zeile makieren">
+                    
+                </MenuItem>
+                <MenuItem Header="Info"/>
             </MenuItem>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
@@ -35,23 +45,33 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TreeView Margin="5" Grid.Row="1" Grid.RowSpan="7"/>
+            
+            <TreeView Margin="5" Grid.Row="1" Grid.RowSpan="7">
+            </TreeView>
             <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8"/>
-            <Button Height="35" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
-            <Button Height="35" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag"/>
-            <Button Height="35" Grid.Column="5" Grid.Row="8" Content="Speichern"/>
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-            </Grid>
+            <Button Margin="2" Height="35" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
+            <Button Margin="5" Height="35" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag"/>
+            <Button Margin="0,0,5,0" Height="35" Grid.Column="5" Grid.Row="8" Content="Berechnen"/>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <Label>
+                    <Label.Content>
+                        <Image Height="50" Source="/Resources/DatenDenker.png"/>
+                    </Label.Content>
+                </Label>
+                <RadioButton GroupName="Einheit" Content="Kilogramm"/>
+                <RadioButton GroupName="Einheit" Content="Gramm"/>
+            </StackPanel>
+            <ProgressBar VerticalAlignment="Bottom" Margin="2,0,0,5" Height="10" Grid.Row="8" Grid.Column="0"/>
+            <StackPanel Grid.Row="8" Grid.Column="1">
+                <Label Content="Projektname:"/>
+                <Label Content="Stufe:"/>
+                <Label Content="Logbuchname:"/>
+            </StackPanel>
+            <StackPanel Grid.Row="8" Grid.Column="2">
+                <Label Content="Projektname:"/>
+                <Label Content="Stufe:"/>
+                <Label Content="Logbuchname:"/>
+            </StackPanel>
         </Grid>
     </DockPanel>
 </Window>
