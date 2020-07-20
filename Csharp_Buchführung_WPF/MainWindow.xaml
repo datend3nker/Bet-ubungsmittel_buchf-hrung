@@ -46,10 +46,12 @@
             
             <TreeView x:Name="tv_pfad" Margin="5,0,5,0" Grid.Row="1" Grid.RowSpan="7">
             </TreeView>
-            <DataGrid x:Name="dg_tabelle" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8"/>
-            <Button x:Name="btn_löschen" Margin="2" Height="35" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
-            <Button x:Name="btn_neuer" Margin="5" Height="35" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag"/>
-            <Button x:Name="btn_berechnen" Margin="0,0,5,0" Height="35" Grid.Column="5" Grid.Row="8" Content="Berechnen"/>
+            <DataGrid x:Name="dg_tabelle" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8">
+                
+            </DataGrid>
+            <Button x:Name="btn_löschen" Margin="2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
+            <Button x:Name="btn_neuer" Margin="2,20" Height="auto" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag"/>
+            <Button x:Name="btn_berechnen" Margin="0,20,5,20" Height="auto" Grid.Column="5" Grid.Row="8" Content="Berechnen"/>
             <Grid Grid.Row="0" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -81,16 +83,26 @@
                 <ProgressBar x:Name="pb_progress" Grid.Row="2" VerticalAlignment="Bottom" Margin="2,2,0,5" Height="10"/>
             </Grid>
             
-            <StackPanel Grid.Row="8" Grid.Column="1">
-                <Label Content="Projektname:"/>
-                <Label Content="Stufe:"/>
-                <Label Content="Logbuch:"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="2">
-                <Label x:Name="l_projektname" Content="Projektname:"/>
-                <Label x:Name="l_stufe" Content="Stufe:"/>
-                <Label x:Name="l_logbuch" Content="Logbuchname:"/>
-            </StackPanel>
+            <Grid Grid.Row="8" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Projektname:"/>
+                <Label Grid.Row="1" Content="Stufe:"/>
+                <Label Grid.Row="2" Content="Logbuch:"/>
+            </Grid>
+            <Grid Grid.Row="8" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="l_projektname" Grid.Row="0" Content="Projektname"/>
+                <Label x:Name="l_stufe" Grid.Row="1" Content="Stufe"/>
+                <Label x:Name="l_logbuch" Grid.Row="2" Content="Logbuchname"/>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>
