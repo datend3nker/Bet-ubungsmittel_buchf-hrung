@@ -10,6 +10,11 @@ namespace Csharp_Buchführung_WPF
         public DbSet<Projekt> Projekte { get; set; }
         public DbSet<Stufe> Stufen { get; set; }
         public DbSet<Eintrag> Einträge { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite("Data Source=BtmDB.db");
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlite("Data Source=BtmDB.db");
+        }
+            
+            
     }
 }

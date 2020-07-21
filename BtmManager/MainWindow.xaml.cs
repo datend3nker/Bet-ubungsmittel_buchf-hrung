@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Csharp_Buchführung_WPF
+namespace BtmManager
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,7 +23,6 @@ namespace Csharp_Buchführung_WPF
         public MainWindow()
         {
             InitializeComponent();
-            using 
         }
     }
 }
