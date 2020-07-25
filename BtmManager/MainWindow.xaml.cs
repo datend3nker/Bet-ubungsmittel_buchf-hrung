@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BtmManager.Data;
+using BtmManager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,14 @@ namespace BtmManager
         public MainWindow()
         {
             InitializeComponent();
+            using BtmContext context = new BtmContext();
+            Eintrag btm1 = new Eintrag()
+            {
+                Einheit = 1,
+                LfdNr = "ghgdh"
+            };
+            context.Einträge.Add(btm1);
+            context.SaveChanges();
         }
     }
 }

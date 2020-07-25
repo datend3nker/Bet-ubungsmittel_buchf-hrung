@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Csharp_Buchführung_WPF"
+        xmlns:local="clr-namespace:BtmManager"
         mc:Ignorable="d"
         Title="Btm-Manager" Height="741" Width="1379" Background="Gray">
     <DockPanel>
@@ -46,7 +46,7 @@
 
             <TreeView x:Name="tv_pfad" Margin="5,0,5,0" Grid.Row="1" Grid.RowSpan="7">
             </TreeView>
-            <DataGrid x:Name="dg_tabelle" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8">
+            <DataGrid x:Name="Eintrag" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" AutoGenerateColumns="True">
 
             </DataGrid>
             <Button x:Name="btn_löschen" Margin="2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
