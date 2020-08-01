@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BtmManager"
         mc:Ignorable="d"
-        Title="Btm-Manager" Height="741" Width="1379" Background="Gray">
+        Title="Btm-Manager" Height="741" Width="1379" Background="LightGray">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
@@ -44,13 +44,31 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TreeView x:Name="tv_pfad" Margin="5,0,5,0" Grid.Row="1" Grid.RowSpan="7">
+            <TreeView x:Name="TreeView" Margin="5,0,5,0" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding Projekte}">
+              
             </TreeView>
-            <DataGrid x:Name="Eintrag" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" AutoGenerateColumns="True">
-
+            <DataGrid x:Name="DataGrid" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="True" 
+                      CanUserSortColumns="True" IsReadOnly="False" AlternatingRowBackground="LightGray" FontSize="14">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Lfd. Nr." Binding="{Binding LfdNr}" Width="*"/>
+                    <DataGridTemplateColumn Header="Datum" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Datum, StringFormat=d}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Anfangsbestand" Binding="{Binding Anfangsbestand}" Width="*"/>
+                    <DataGridTextColumn Header="Thero. Zugang" Binding="{Binding TheroZugang}" Width="*"/>
+                    <DataGridTextColumn Header="Prak. Zugang" Binding="{Binding PrakZugang}" Width="*"/>
+                    <DataGridTextColumn Header="Arbeitsverlust" Binding="{Binding Arbeitsverlust}" Width="*"/>
+                    <DataGridTextColumn Header="Abgang" Binding="{Binding Abgang}" Width="*"/>
+                    <DataGridTextColumn Header="Aktueller Bestand" Binding="{Binding AktuellerBestand}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Bemerkung" Binding="{Binding Bemerkung}" Width="*"/>
+                </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btn_löschen" Margin="2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
-            <Button x:Name="btn_neuer" Margin="2,20" Height="auto" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag"/>
+            <Button x:Name="btn_neuer" Margin="2,20" Height="auto" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag" Click="btn_neuer_Click"/>
             <Button x:Name="btn_berechnen" Margin="0,20,5,20" Height="auto" Grid.Column="5" Grid.Row="8" Content="Berechnen"/>
             <Grid Grid.Row="0" Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -60,7 +78,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal">
                     <Image Margin="1,1,0,0" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="Fant" Source="/Resources/DatenDenker.png"/>
-                    <TextBlock Margin="5,0,0,0" TextWrapping="WrapWithOverflow">
+                    <TextBlock x:Name="BuilddLog" Margin="5,0,0,0" TextWrapping="WrapWithOverflow">
                         Versin:     0.1
                         Builddate:  8.6.2020
                         <LineBreak/>

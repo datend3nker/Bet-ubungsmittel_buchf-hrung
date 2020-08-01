@@ -28,4 +28,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="BtmDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

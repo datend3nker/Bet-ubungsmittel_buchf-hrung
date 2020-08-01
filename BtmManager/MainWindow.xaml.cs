@@ -16,23 +16,42 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BtmManager
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+{ 
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            using BtmContext context = new BtmContext();
-            Eintrag btm1 = new Eintrag()
+            UpdateTabelle();
+            UpdateListe();
+        }
+
+        private void btn_neuer_Click(object sender, RoutedEventArgs e)
+        {
+            using(BtmContext context = new BtmContext())
             {
-                Einheit = 1,
-                LfdNr = "ghgdh"
-            };
-            context.Einträge.Add(btm1);
-            context.SaveChanges();
+                var eintragleer = new Eintrag { };
+                context.Einträge.Add(eintragleer);
+                context.SaveChanges();
+                UpdateTabelle();
+            }
+        }
+        void UpdateTabelle()
+        {
+            using (BtmContext context = new BtmContext())
+            {
+                var result = from Eintrag in context.Einträge select Eintrag;
+                var xc = result.ToList();
+                DataGrid.ItemsSource = result.ToList();
+            }
+        }
+        void UpdateListe()
+        {
+            using (BtmContext context = new BtmContext())
+            {
+                var pro = from Projekt in context.Projekte select Projekt;
+                TreeView.ItemsSource = pro.ToList();
+            }
         }
     }
 }
