@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BtmManager"
+        xmlns:self="clr-namespace:BtmManager.Models"
         mc:Ignorable="d"
         Title="Btm-Manager" Height="741" Width="1379" Background="LightGray">
     <DockPanel>
@@ -43,9 +44,15 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
-            <TreeView x:Name="TreeView" Margin="5,0,5,0" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding Projekte}">
-              
+            <TreeView x:Name="TreeView" Margin="5,0,5,0" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type self:Projekt}" ItemsSource="{Binding Stufe}">
+                        <TextBlock Text="{Binding Path=Produktbezeichnung}" />
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type self:Stufe}">
+                        <TextBlock Text="{Binding Path=MaterialName}" />
+                    </DataTemplate>
+                </TreeView.Resources>
             </TreeView>
             <DataGrid x:Name="DataGrid" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="True" 
                       CanUserSortColumns="True" IsReadOnly="False" AlternatingRowBackground="LightGray" FontSize="14">
