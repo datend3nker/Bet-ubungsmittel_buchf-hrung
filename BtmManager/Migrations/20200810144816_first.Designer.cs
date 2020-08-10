@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BtmManager.Migrations
 {
     [DbContext(typeof(BtmContext))]
-    [Migration("20200723192542_FirstTry")]
-    partial class FirstTry
+    [Migration("20200810144816_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,8 +73,9 @@ namespace BtmManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BtmBestandsbuchNr")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("BtmBestandsbuchNr")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ProduktNr")
                         .HasColumnType("INTEGER");

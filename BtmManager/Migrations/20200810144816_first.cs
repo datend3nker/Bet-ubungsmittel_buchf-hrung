@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BtmManager.Migrations
 {
-    public partial class FirstTry : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace BtmManager.Migrations
                 {
                     ProjektId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BtmBestandsbuchNr = table.Column<int>(nullable: false),
+                    BtmBestandsbuchNr = table.Column<string>(nullable: false),
                     Stufenanzahl = table.Column<int>(nullable: false),
                     Produktbezeichnung = table.Column<string>(nullable: true),
                     ProduktNr = table.Column<int>(nullable: false),

@@ -6,17 +6,18 @@
         xmlns:local="clr-namespace:BtmManager"
         xmlns:self="clr-namespace:BtmManager.Models"
         mc:Ignorable="d"
-        Title="Btm-Manager" Height="741" Width="1379" Background="LightGray">
+        Title="Btm-Manager" Height="664" Width="1127" Background="LightGray">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
                 <MenuItem x:Name="m_laden" Header="Datenbank laden"/>
                 <MenuItem x:Name="m_übertragen" Header="Daten übertragen"/>
                 <Separator/>
+                <MenuItem x:Name="m_Projekt" Header="Neues Projekt" Click="m_Projekt_Click"/>
                 <MenuItem x:Name="m_stufe" Header="Neue Stufe"/>
                 <MenuItem x:Name="m_logbuch" Header="Neues Logbuch"/>
                 <Separator/>
-                <MenuItem x:Name="m_beenden" Header="Beenden"/>
+                <MenuItem x:Name="m_beenden" Header="Beenden" Click="m_beenden_Click"/>
             </MenuItem>
             <MenuItem Header="Werkzeuge">
                 <MenuItem x:Name="m_berechnen" Header="Berechnen"/>
@@ -26,12 +27,12 @@
         </Menu>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -44,17 +45,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TreeView x:Name="TreeView" Margin="5,0,5,0" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding}">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type self:Projekt}" ItemsSource="{Binding Stufe}">
-                        <TextBlock Text="{Binding Path=Produktbezeichnung}" />
-                    </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type self:Stufe}">
-                        <TextBlock Text="{Binding Path=MaterialName}" />
-                    </DataTemplate>
-                </TreeView.Resources>
-            </TreeView>
-            <DataGrid x:Name="DataGrid" Margin="5,5,5,0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="True" 
+            <TreeView x:Name="TreeView" Margin="5,0,5,10" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding Projekt}"/>
+            <DataGrid x:Name="DataGrid" Margin="5,5,5,10" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="True" 
                       CanUserSortColumns="True" IsReadOnly="False" AlternatingRowBackground="LightGray" FontSize="14">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Lfd. Nr." Binding="{Binding LfdNr}" Width="*"/>
@@ -65,7 +57,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Anfangsbestand" Binding="{Binding Anfangsbestand}" Width="*"/>
+                    <DataGridTextColumn Header="Anfangsbestand" Binding="{Binding Anfangsbestand}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Thero. Zugang" Binding="{Binding TheroZugang}" Width="*"/>
                     <DataGridTextColumn Header="Prak. Zugang" Binding="{Binding PrakZugang}" Width="*"/>
                     <DataGridTextColumn Header="Arbeitsverlust" Binding="{Binding Arbeitsverlust}" Width="*"/>
@@ -74,28 +66,31 @@
                     <DataGridTextColumn Header="Bemerkung" Binding="{Binding Bemerkung}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btn_löschen" Margin="2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
-            <Button x:Name="btn_neuer" Margin="2,20" Height="auto" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag" Click="btn_neuer_Click"/>
-            <Button x:Name="btn_berechnen" Margin="0,20,5,20" Height="auto" Grid.Column="5" Grid.Row="8" Content="Berechnen"/>
-            <Grid Grid.Row="0" Grid.Column="0">
+            <Button x:Name="btn_löschen" Margin="3,20,2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
+            <Button x:Name="btn_neuer" Margin="2,20,2,20" Height="auto" Grid.Column="4" Grid.Row="8" Content="Neuer Eintrag" Click="btn_neuer_Click"/>
+            <Button x:Name="btn_berechnen" Margin="2,20,5,20" Height="auto" Grid.Column="5" Grid.Row="8" Content="Berechnen" />
+            <Grid Grid.Column="0" Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
-                    <Image Margin="1,1,0,0" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="Fant" Source="/Resources/DatenDenker.png"/>
-                    <TextBlock x:Name="BuilddLog" Margin="5,0,0,0" TextWrapping="WrapWithOverflow">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Margin="0,5,0,10" Grid.Row="0" Grid.Column="0" RenderOptions.BitmapScalingMode="Fant" Source="/Resources/DatenDenker.png"/>
+                <TextBlock x:Name="BuilddLog" Margin="5,5,5,0" TextWrapping="WrapWithOverflow" Grid.Row="0" Grid.Column="1" >
                         Versin:     0.1
+                        <LineBreak/>
                         Builddate:  8.6.2020
                         <LineBreak/>
                         Owner: Ludwig Ettner
                         <LineBreak/>
                         All rights reserved
-                    </TextBlock>
-                </StackPanel>
-                <RadioButton x:Name="rbtn_kilogramm" Grid.Row="1" GroupName="Einheit" Content="Kilogramm"/>
-                <RadioButton x:Name="rbtn_gramm" Grid.Row="2" GroupName="Einheit" Content="Gramm"/>
+                </TextBlock>
+                <RadioButton x:Name="rbtn_kilogramm" Grid.Row="1" GroupName="Einheit" Content="Kilogramm" Grid.ColumnSpan="2"/>
+                <RadioButton x:Name="rbtn_gramm" Grid.Row="2" GroupName="Einheit" Content="Gramm" Grid.ColumnSpan="2" Margin="0,0,0,10"/>
             </Grid>
             <Grid Grid.Row="8" Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -118,7 +113,7 @@
                 <Label Grid.Row="1" Content="Stufe:"/>
                 <Label Grid.Row="2" Content="Logbuch:"/>
             </Grid>
-            <Grid Grid.Row="8" Grid.Column="2">
+            <Grid Grid.Row="8" Grid.Column="2" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

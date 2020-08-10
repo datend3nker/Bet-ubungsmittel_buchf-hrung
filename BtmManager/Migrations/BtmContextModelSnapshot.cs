@@ -71,8 +71,9 @@ namespace BtmManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BtmBestandsbuchNr")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("BtmBestandsbuchNr")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ProduktNr")
                         .HasColumnType("INTEGER");

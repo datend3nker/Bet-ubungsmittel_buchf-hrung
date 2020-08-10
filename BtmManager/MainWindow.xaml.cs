@@ -23,7 +23,7 @@ namespace BtmManager
         {
             InitializeComponent();
             UpdateTabelle();
-            UpdateListe();
+            UpdateTreeView();
         }
 
         private void btn_neuer_Click(object sender, RoutedEventArgs e)
@@ -36,22 +36,50 @@ namespace BtmManager
                 UpdateTabelle();
             }
         }
-        void UpdateTabelle()
+        public void UpdateTabelle()
         {
             using (BtmContext context = new BtmContext())
             {
-                var result = from Eintrag in context.Einträge select Eintrag;
-                var xc = result.ToList();
+                IQueryable<Eintrag> result = from Eintrag in context.Einträge select Eintrag;
                 DataGrid.ItemsSource = result.ToList();
             }
         }
-        void UpdateListe()
+        public void UpdateTreeView()
         {
+            TreeView.Items.Clear();
             using (BtmContext context = new BtmContext())
             {
-                var pro = from Projekt in context.Projekte select Projekt;
-                TreeView.ItemsSource = pro.ToList();
+                var pro = (from Projekt in context.Projekte select Projekt).ToList();
+                var stu = (from Stufe in context.Stufen select Stufe).ToList();
+                foreach(var proj in pro)
+                {
+                    TreeViewItem newProject = new TreeViewItem();
+                    newProject.Header = proj.Produktbezeichnung;
+                    foreach(var stuf in stu)
+                    {
+                        if (stuf.ProjektId == proj.ProjektId)
+                        {
+                            TreeViewItem newEintrag = new TreeViewItem();
+                            newEintrag.Header = stuf.MaterialName;
+                            newProject.Items.Add(newEintrag);
+                        }
+                    }
+                    TreeView.Items.Add(newProject);
+                }
             }
+        }
+
+        private void m_Projekt_Click(object sender, RoutedEventArgs e)
+        {
+            
+            NeuesProjekt neuesprojekt = new NeuesProjekt();
+            neuesprojekt.ShowDialog();
+            UpdateTreeView();
+        }
+
+        private void m_beenden_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

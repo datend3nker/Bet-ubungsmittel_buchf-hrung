@@ -10,7 +10,7 @@ namespace BtmManager.Models
         [Key]
         public int ProjektId { set; get; }
         [Required]
-        public int BtmBestandsbuchNr { get; set; }
+        public string BtmBestandsbuchNr { get; set; }
         [Required]
         public int Stufenanzahl { get; set; }
         public string Produktbezeichnung { get; set; }
