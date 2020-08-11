@@ -32,14 +32,18 @@ namespace BtmManager
                 var ProjektLeer = new Projekt { };
                 ProjektLeer.BtmBestandsbuchNr = tb_BtmBestandsbuchNr.Text;
                 ProjektLeer.Produktbezeichnung = tb_Produktbezeichnung.Text;
-                ProjektLeer.Zeitraum = tb_Zeitraum.SelectedDate.Value;
+                ProjektLeer.Zeitraum = tb_Zeitraum.SelectedDate.GetValueOrDefault(DateTime.Today);
                 string ProduktNr = tb_ProduktNr.Text;
-                int nr;
-                bool ProCorr = Int32.TryParse(ProduktNr, out nr);
-                if (ProCorr)
+                string stufenzahl = tb_Stufenanzahl.Text;
+                bool ProCorr = Int32.TryParse(ProduktNr, out int nr);
+                bool stufcor = Int32.TryParse(stufenzahl, out int stufenZahl);
+                if(ProCorr && stufcor)
                 {
-                    ProjektLeer.ProduktNr = nr;
                     tb_ProduktNr.Background = Brushes.White;
+                    tb_Stufenanzahl.Background = Brushes.White;
+
+                    ProjektLeer.ProduktNr = nr;
+                    ProjektLeer.Stufenanzahl = stufenZahl;
                     context.Projekte.Add(ProjektLeer);
                     context.SaveChanges();
                     main.UpdateTreeView();
@@ -47,7 +51,22 @@ namespace BtmManager
                 }
                 else
                 {
-                    tb_ProduktNr.Background = Brushes.Red;
+                    if (!ProCorr)
+                    {
+                        tb_ProduktNr.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        tb_ProduktNr.Background = Brushes.White;
+                    }
+                    if (!stufcor)
+                    {
+                        tb_Stufenanzahl.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        tb_Stufenanzahl.Background = Brushes.White;
+                    }
                 }
             }
         }

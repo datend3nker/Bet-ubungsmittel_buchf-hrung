@@ -81,5 +81,12 @@ namespace BtmManager
         {
             Application.Current.Shutdown();
         }
+
+        private void m_stufe_Click(object sender, RoutedEventArgs e)
+        {
+            NeueStufe neuestufe = new NeueStufe();
+            neuestufe.ShowDialog();
+            UpdateTreeView();
+        }
     }
 }

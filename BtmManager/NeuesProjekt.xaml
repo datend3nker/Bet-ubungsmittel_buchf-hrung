@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BtmManager"
         mc:Ignorable="d"
-        Title="NeuesProjekt" Height="290" Width="552" Background="LightGray">
+        Title="NeuesProjekt" Height="400" Width="607" Background="LightGray">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,16 +21,20 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0"  Content="BtmBestandsbuchNr" Margin="5,10,5,0"/>
         <TextBox x:Name="tb_BtmBestandsbuchNr" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Margin="5,0,5,0"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Produktbezeichnung" Margin="5,10,5,0"/>
-        <TextBox x:Name="tb_Produktbezeichnung" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Margin="5,0,5,0"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="ProduktNr" Margin="5,10,5,0"/>
-        <TextBox x:Name="tb_ProduktNr" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Margin="5,0,5,0"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="Zeitraum" Margin="5,10,5,0"/>
-        <DatePicker x:Name="tb_Zeitraum" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" SelectedDate="{Binding Datum, StringFormat=d}"/>
-        <Button x:Name="NeuesProjektErstellen" Content="Neues Projekt Erstellen" Grid.Row="8" Grid.Column="2" Margin="2.5" Click="NeuesProjektErstellen_Click"/>
+        <Label Grid.Row="2" Grid.Column="0"  Content="Stufenanzahl" Margin="5,10,5,0"/>
+        <TextBox x:Name="tb_Stufenanzahl" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Margin="5,0,5,0"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Produktbezeichnung" Margin="5,10,5,0"/>
+        <TextBox x:Name="tb_Produktbezeichnung" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Margin="5,0,5,0"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="ProduktNr" Margin="5,10,5,0"/>
+        <TextBox x:Name="tb_ProduktNr" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Margin="5,0,5,0"/>
+        <Label Grid.Row="8" Grid.Column="0" Content="Zeitraum" Margin="5,10,5,0"/>
+        <DatePicker x:Name="tb_Zeitraum" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Button x:Name="NeuesProjektErstellen" Content="Neues Projekt Erstellen" Grid.Row="10" Grid.Column="2" Margin="2.5" Click="NeuesProjektErstellen_Click"/>
     </Grid>
 </Window>
