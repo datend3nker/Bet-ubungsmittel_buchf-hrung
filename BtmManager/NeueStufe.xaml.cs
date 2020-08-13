@@ -27,7 +27,6 @@ namespace BtmManager
             {
                 IQueryable<Projekt> Pro = from Projekt in context.Projekte select Projekt;
                 cb_Projekt.ItemsSource = Pro.ToList();
-                int y = 7;
             }
         }
 
@@ -48,11 +47,19 @@ namespace BtmManager
                                 where Projekt.Produktbezeichnung == cb_Projekt.Text
                                 select Projekt.ProjektId;
                     var x = query.ToList();
-                    leerestufe.ProjektId = x[0];
-                    context.Stufen.Add(leerestufe);
-                    context.SaveChanges();
-                    main.UpdateTreeView();
-                    this.Close();
+                    if (x.Any())
+                    {
+                        leerestufe.ProjektId = x[0];
+                        context.Stufen.Add(leerestufe);
+                        context.SaveChanges();
+                        main.UpdateTreeView();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kein Projekt ausgewählt!", "Warnung");
+                    }
+                    
                 }
                 else
                 {

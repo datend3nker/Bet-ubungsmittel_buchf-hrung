@@ -15,7 +15,7 @@
                 <Separator/>
                 <MenuItem x:Name="m_Projekt" Header="Neues Projekt" Click="m_Projekt_Click"/>
                 <MenuItem x:Name="m_stufe" Header="Neue Stufe" Click="m_stufe_Click"/>
-                <MenuItem x:Name="m_logbuch" Header="Neues Logbuch"/>
+                <MenuItem x:Name="m_logbuch" Header="Neues Logbuch" Click="m_logbuch_Click"/>
                 <Separator/>
                 <MenuItem x:Name="m_beenden" Header="Beenden" Click="m_beenden_Click"/>
             </MenuItem>

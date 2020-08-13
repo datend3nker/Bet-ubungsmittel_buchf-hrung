@@ -37,6 +37,10 @@ namespace BtmManager.Migrations
                     b.Property<string>("Bemerkung")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Bezeichnung")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Datum")
                         .HasColumnType("TEXT");
 

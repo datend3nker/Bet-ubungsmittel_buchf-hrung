@@ -11,6 +11,8 @@ namespace BtmManager.Models
         public int EintragId { set; get; }
         [Required]
         public byte Einheit { get; set; }
+        [Required]
+        public string Bezeichnung { get; set; }
         public string LfdNr { get; set; }
         public DateTime Datum { get; set; }
         public float Anfangsbestand { get; set; }

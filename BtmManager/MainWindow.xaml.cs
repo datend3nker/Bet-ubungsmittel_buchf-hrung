@@ -51,18 +51,35 @@ namespace BtmManager
             {
                 var pro = (from Projekt in context.Projekte select Projekt).ToList();
                 var stu = (from Stufe in context.Stufen select Stufe).ToList();
-                foreach(var proj in pro)
+                var ein = (from Eintrag in context.Einträge select Eintrag).ToList();
+                foreach (var proj in pro)
                 {
-                    TreeViewItem newProject = new TreeViewItem();
-                    newProject.Header = proj.Produktbezeichnung;
-                    foreach(var stuf in stu)
+                    TreeViewItem newProject = new TreeViewItem
+                    {
+                        Header = proj.Produktbezeichnung
+                    };
+                    foreach (var stuf in stu)
                     {
                         if (stuf.ProjektId == proj.ProjektId)
                         {
-                            TreeViewItem newEintrag = new TreeViewItem();
-                            newEintrag.Header = stuf.MaterialName;
-                            newProject.Items.Add(newEintrag);
+                            TreeViewItem newStufe = new TreeViewItem
+                            {
+                                Header = stuf.MaterialName
+                            };
+                            newProject.Items.Add(newStufe);
+                            foreach(var eint in ein)
+                            {
+                                if(eint.StufId == stuf.StufId)
+                                {
+                                    TreeViewItem newEintrag = new TreeViewItem
+                                    {
+                                        Header = eint.Bezeichnung
+                                    };
+                                    newStufe.Items.Add(newEintrag);
+                                }
+                            }
                         }
+                        
                     }
                     TreeView.Items.Add(newProject);
                 }
@@ -86,6 +103,13 @@ namespace BtmManager
         {
             NeueStufe neuestufe = new NeueStufe();
             neuestufe.ShowDialog();
+            UpdateTreeView();
+        }
+
+        private void m_logbuch_Click(object sender, RoutedEventArgs e)
+        {
+            NeuerEntrag neuereintrag = new NeuerEntrag();
+            neuereintrag.ShowDialog();
             UpdateTreeView();
         }
     }

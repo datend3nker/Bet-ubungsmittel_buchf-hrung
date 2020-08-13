@@ -1,0 +1,43 @@
+﻿<Window x:Class="BtmManager.NeuerEntrag"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BtmManager"
+        mc:Ignorable="d"
+        Title="NeuerEntrag" Height="450" Width="800" Background="LightGray">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Margin="5,10,5,0" Content="Einheit" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cb_Einheit" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0,5,0">
+            <ComboBoxItem Content="Gramm"/>
+            <ComboBoxItem Content="Kilogramm"/>
+        </ComboBox>
+        <Label Margin="5,10,5,0" Content="Anfangsbestand" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tb_Anfangsbestand" Margin="5,0,5,0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Label Margin="5,10,5,0" Content="LdfNr" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tb_LdfNr" Margin="5,0,5,0" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Label Margin="5,10,5,0" Content="Bezeichnung" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tb_Bezeichnung" Margin="5,0,5,0" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"/>
+        <Label Margin="5,10,5,0" Content="Stufe" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2"/>
+        <ComboBox Margin="5,0,5,0" x:Name="cb_Stufe" ItemsSource="{Binding Path=Stufen}" DisplayMemberPath="MaterialName" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2"/>
+        <Button Content="Eeuen Eintrag Erstellen" Grid.Row="10" Grid.Column="3" Margin="2.5" Click="Button_Click"/>
+    </Grid>
+</Window>

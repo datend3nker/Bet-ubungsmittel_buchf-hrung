@@ -31,13 +31,14 @@ namespace BtmManager
             {
                 var ProjektLeer = new Projekt { };
                 ProjektLeer.BtmBestandsbuchNr = tb_BtmBestandsbuchNr.Text;
+                string y = tb_BtmBestandsbuchNr.Text;
                 ProjektLeer.Produktbezeichnung = tb_Produktbezeichnung.Text;
                 ProjektLeer.Zeitraum = tb_Zeitraum.SelectedDate.GetValueOrDefault(DateTime.Today);
                 string ProduktNr = tb_ProduktNr.Text;
                 string stufenzahl = tb_Stufenanzahl.Text;
                 bool ProCorr = Int32.TryParse(ProduktNr, out int nr);
                 bool stufcor = Int32.TryParse(stufenzahl, out int stufenZahl);
-                if(ProCorr && stufcor)
+                if(ProCorr && stufcor && !(tb_BtmBestandsbuchNr.Text == "") && !(tb_Produktbezeichnung.Text == ""))
                 {
                     tb_ProduktNr.Background = Brushes.White;
                     tb_Stufenanzahl.Background = Brushes.White;
@@ -66,6 +67,22 @@ namespace BtmManager
                     else
                     {
                         tb_Stufenanzahl.Background = Brushes.White;
+                    }
+                    if(tb_BtmBestandsbuchNr.Text == "")
+                    {
+                        tb_BtmBestandsbuchNr.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        tb_BtmBestandsbuchNr.Background = Brushes.White;
+                    }
+                    if(tb_Produktbezeichnung.Text == "")
+                    {
+                        tb_Produktbezeichnung.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        tb_Produktbezeichnung.Background = Brushes.White;
                     }
                 }
             }

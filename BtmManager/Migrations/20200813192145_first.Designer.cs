@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BtmManager.Migrations
 {
     [DbContext(typeof(BtmContext))]
-    [Migration("20200810144816_first")]
+    [Migration("20200813192145_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,10 @@ namespace BtmManager.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("Bemerkung")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Bezeichnung")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Datum")

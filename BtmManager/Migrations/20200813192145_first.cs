@@ -53,6 +53,7 @@ namespace BtmManager.Migrations
                     EintragId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Einheit = table.Column<byte>(nullable: false),
+                    Bezeichnung = table.Column<string>(nullable: false),
                     LfdNr = table.Column<string>(nullable: true),
                     Datum = table.Column<DateTime>(nullable: false),
                     Anfangsbestand = table.Column<float>(nullable: false),
