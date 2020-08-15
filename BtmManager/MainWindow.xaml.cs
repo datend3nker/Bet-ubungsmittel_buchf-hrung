@@ -1,7 +1,9 @@
 ﻿using BtmManager.Data;
 using BtmManager.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +21,13 @@ namespace BtmManager
 { 
     public partial class MainWindow : Window
     {
+        public string BezeichnungSpace;
+        public byte EinheitSpace;
+        public int StufIdSpace;
         public MainWindow()
         {
             InitializeComponent();
-            UpdateTabelle();
+            
             UpdateTreeView();
         }
 
@@ -31,19 +36,27 @@ namespace BtmManager
             using(BtmContext context = new BtmContext())
             {
                 var eintragleer = new Eintrag { };
+                eintragleer.Bezeichnung = this.BezeichnungSpace;
+                eintragleer.Einheit = this.EinheitSpace;
+                eintragleer.StufId = this.StufIdSpace;
+                eintragleer.IsFirst = false;
                 context.Einträge.Add(eintragleer);
                 context.SaveChanges();
-                UpdateTabelle();
             }
+            this.UpdateTabelle(BezeichnungSpace);
         }
-        public void UpdateTabelle()
+
+        public void UpdateTabelle( string suche)
         {
             using (BtmContext context = new BtmContext())
             {
-                IQueryable<Eintrag> result = from Eintrag in context.Einträge select Eintrag;
-                DataGrid.ItemsSource = result.ToList();
+                var result = (from Eintrag in context.Einträge
+                                              where Eintrag.Bezeichnung == suche
+                                              select Eintrag).ToList();
+                this.DataGrid.ItemsSource = result;
             }
         }
+
         public void UpdateTreeView()
         {
             TreeView.Items.Clear();
@@ -71,11 +84,15 @@ namespace BtmManager
                             {
                                 if(eint.StufId == stuf.StufId)
                                 {
-                                    TreeViewItem newEintrag = new TreeViewItem
-                                    {
-                                        Header = eint.Bezeichnung
-                                    };
-                                    newStufe.Items.Add(newEintrag);
+                                    if(eint.IsFirst == true) 
+                                        {
+                                            TreeViewItem newEintrag = new TreeViewItem
+                                            {
+                                                Header = eint.Bezeichnung,
+                                            };
+                                            newEintrag.Selected += NewEintrag_Selected;
+                                            newStufe.Items.Add(newEintrag);
+                                        }
                                 }
                             }
                         }
@@ -84,6 +101,55 @@ namespace BtmManager
                     TreeView.Items.Add(newProject);
                 }
             }
+
+       
+    }
+
+        private void NewEintrag_Selected(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem gh = (TreeViewItem)sender;
+            string sendrename = (string)gh.Header;
+            this.BezeichnungSpace = sendrename;
+            
+            this.UpdateTabelle(sendrename);
+            this.l_logbuch.Content = sendrename;
+            using (BtmContext context = new BtmContext())
+            {
+                this.EinheitSpace = ((from Eintrag in context.Einträge
+                                      where Eintrag.Bezeichnung == this.BezeichnungSpace
+                                      select Eintrag.Einheit).ToList())[0]; 
+
+                this.StufIdSpace = ((from Eintrag in context.Einträge
+                                      where Eintrag.Bezeichnung == this.BezeichnungSpace
+                                      select Eintrag.StufId).ToList())[0];
+
+                var stufasparentID = (from Eintrag in context.Einträge
+                                    where Eintrag.Bezeichnung == sendrename
+                                    select Eintrag.StufId).ToList();
+
+                l_stufe.Content = ((from Stufe in context.Stufen
+                                   where Stufe.StufId == stufasparentID[0]
+                                   select Stufe.MaterialName).ToList())[0];
+
+                var projasparentID = (from Stufe in context.Stufen
+                                    where Stufe.StufId == stufasparentID[0]
+                                    select Stufe.ProjektId).ToList();
+
+                l_projektname.Content = ((from Projekt in context.Projekte
+                                  where Projekt.ProjektId == projasparentID[0]
+                                  select Projekt.Produktbezeichnung).ToList())[0];
+                switch (this.EinheitSpace){
+                    case 1:
+                        rbtn_gramm.IsChecked = true;
+                        rbtn_kilogramm.IsChecked = false;
+                        break;
+                    case 2:
+                        rbtn_kilogramm.IsChecked = true;
+                        rbtn_gramm.IsChecked = false;
+                        break;
+                }
+            }
+            
         }
 
         private void m_Projekt_Click(object sender, RoutedEventArgs e)
@@ -111,6 +177,14 @@ namespace BtmManager
             NeuerEntrag neuereintrag = new NeuerEntrag();
             neuereintrag.ShowDialog();
             UpdateTreeView();
+        }
+
+        private void m_übertragen_Click(object sender, RoutedEventArgs e)
+        {
+            //                      column                                      row
+            var n = this.DataGrid.Columns[2].GetCellContent(DataGrid.Items[0]) as TextBlock;
+            var g = n.Text;
+            int t = 0;
         }
     }
 }

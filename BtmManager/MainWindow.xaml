@@ -11,7 +11,7 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
                 <MenuItem x:Name="m_laden" Header="Datenbank laden"/>
-                <MenuItem x:Name="m_übertragen" Header="Daten übertragen"/>
+                <MenuItem x:Name="m_übertragen" Header="Daten übertragen" Click="m_übertragen_Click"/>
                 <Separator/>
                 <MenuItem x:Name="m_Projekt" Header="Neues Projekt" Click="m_Projekt_Click"/>
                 <MenuItem x:Name="m_stufe" Header="Neue Stufe" Click="m_stufe_Click"/>
@@ -89,8 +89,8 @@
                         <LineBreak/>
                         All rights reserved
                 </TextBlock>
-                <RadioButton x:Name="rbtn_kilogramm" Grid.Row="1" GroupName="Einheit" Content="Kilogramm" Grid.ColumnSpan="2"/>
-                <RadioButton x:Name="rbtn_gramm" Grid.Row="2" GroupName="Einheit" Content="Gramm" Grid.ColumnSpan="2" Margin="0,0,0,10"/>
+                <RadioButton x:Name="rbtn_kilogramm" Grid.Row="1" GroupName="Einheit" Content="Kilogramm" Grid.ColumnSpan="2" IsEnabled="False"/>
+                <RadioButton x:Name="rbtn_gramm" Grid.Row="2" GroupName="Einheit" Content="Gramm" Grid.ColumnSpan="2" Margin="0,0,0,10" IsEnabled="False"/>
             </Grid>
             <Grid Grid.Row="8" Grid.Column="0">
                 <Grid.RowDefinitions>

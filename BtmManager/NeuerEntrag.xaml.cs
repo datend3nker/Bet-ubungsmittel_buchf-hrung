@@ -83,6 +83,7 @@ namespace BtmManager
                         }
                         if ((leerEintrag.Einheit ==1) || (leerEintrag.Einheit == 2))
                         {
+                            leerEintrag.IsFirst = true;
                             context.Einträge.Add(leerEintrag);
                             context.SaveChanges();
                             main.UpdateTreeView();

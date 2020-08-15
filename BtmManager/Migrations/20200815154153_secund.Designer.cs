@@ -3,14 +3,16 @@ using System;
 using BtmManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BtmManager.Migrations
 {
     [DbContext(typeof(BtmContext))]
-    partial class BtmContextModelSnapshot : ModelSnapshot
+    [Migration("20200815154153_secund")]
+    partial class secund
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -13,6 +13,8 @@ namespace BtmManager.Models
         public byte Einheit { get; set; }
         [Required]
         public string Bezeichnung { get; set; }
+        [Required]
+        public bool IsFirst { get; set; }
         public string LfdNr { get; set; }
         public DateTime Datum { get; set; }
         public float Anfangsbestand { get; set; }
