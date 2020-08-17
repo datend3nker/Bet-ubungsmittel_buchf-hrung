@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BtmManager
-{ 
+{
     public partial class MainWindow : Window
     {
         public string BezeichnungSpace;
@@ -27,32 +27,17 @@ namespace BtmManager
         public MainWindow()
         {
             InitializeComponent();
-            
             UpdateTreeView();
+
         }
 
-        private void btn_neuer_Click(object sender, RoutedEventArgs e)
-        {
-            using(BtmContext context = new BtmContext())
-            {
-                var eintragleer = new Eintrag { };
-                eintragleer.Bezeichnung = this.BezeichnungSpace;
-                eintragleer.Einheit = this.EinheitSpace;
-                eintragleer.StufId = this.StufIdSpace;
-                eintragleer.IsFirst = false;
-                context.Einträge.Add(eintragleer);
-                context.SaveChanges();
-            }
-            this.UpdateTabelle(BezeichnungSpace);
-        }
-
-        public void UpdateTabelle( string suche)
+        public void UpdateTabelle(string suche)
         {
             using (BtmContext context = new BtmContext())
             {
                 var result = (from Eintrag in context.Einträge
-                                              where Eintrag.Bezeichnung == suche
-                                              select Eintrag).ToList();
+                              where Eintrag.Bezeichnung == suche
+                              select Eintrag).ToList();
                 this.DataGrid.ItemsSource = result;
             }
         }
@@ -80,65 +65,66 @@ namespace BtmManager
                                 Header = stuf.MaterialName
                             };
                             newProject.Items.Add(newStufe);
-                            foreach(var eint in ein)
+                            foreach (var eint in ein)
                             {
-                                if(eint.StufId == stuf.StufId)
+                                if (eint.StufId == stuf.StufId)
                                 {
-                                    if(eint.IsFirst == true) 
+                                    if (eint.IsFirst == true)
+                                    {
+                                        TreeViewItem newEintrag = new TreeViewItem
                                         {
-                                            TreeViewItem newEintrag = new TreeViewItem
-                                            {
-                                                Header = eint.Bezeichnung,
-                                            };
-                                            newEintrag.Selected += NewEintrag_Selected;
-                                            newStufe.Items.Add(newEintrag);
-                                        }
+                                            Header = eint.Bezeichnung,
+                                        };
+                                        newEintrag.Selected += NewEintrag_Selected;
+                                        newStufe.Items.Add(newEintrag);
+                                    }
                                 }
                             }
                         }
-                        
+
                     }
                     TreeView.Items.Add(newProject);
                 }
             }
 
-       
-    }
+
+        }
 
         private void NewEintrag_Selected(object sender, RoutedEventArgs e)
         {
             TreeViewItem gh = (TreeViewItem)sender;
             string sendrename = (string)gh.Header;
             this.BezeichnungSpace = sendrename;
-            
+
             this.UpdateTabelle(sendrename);
             this.l_logbuch.Content = sendrename;
             using (BtmContext context = new BtmContext())
             {
                 this.EinheitSpace = ((from Eintrag in context.Einträge
                                       where Eintrag.Bezeichnung == this.BezeichnungSpace
-                                      select Eintrag.Einheit).ToList())[0]; 
+                                      select Eintrag.Einheit).ToList())[0];
 
                 this.StufIdSpace = ((from Eintrag in context.Einträge
-                                      where Eintrag.Bezeichnung == this.BezeichnungSpace
-                                      select Eintrag.StufId).ToList())[0];
+                                     where Eintrag.Bezeichnung == this.BezeichnungSpace
+                                     select Eintrag.StufId).ToList())[0];
 
                 var stufasparentID = (from Eintrag in context.Einträge
-                                    where Eintrag.Bezeichnung == sendrename
-                                    select Eintrag.StufId).ToList();
+                                      where Eintrag.Bezeichnung == sendrename
+                                      select Eintrag.StufId).ToList();
 
                 l_stufe.Content = ((from Stufe in context.Stufen
-                                   where Stufe.StufId == stufasparentID[0]
-                                   select Stufe.MaterialName).ToList())[0];
+                                    where Stufe.StufId == stufasparentID[0]
+                                    select Stufe.MaterialName).ToList())[0];
 
                 var projasparentID = (from Stufe in context.Stufen
-                                    where Stufe.StufId == stufasparentID[0]
-                                    select Stufe.ProjektId).ToList();
+                                      where Stufe.StufId == stufasparentID[0]
+                                      select Stufe.ProjektId).ToList();
 
                 l_projektname.Content = ((from Projekt in context.Projekte
-                                  where Projekt.ProjektId == projasparentID[0]
-                                  select Projekt.Produktbezeichnung).ToList())[0];
-                switch (this.EinheitSpace){
+                                          where Projekt.ProjektId == projasparentID[0]
+                                          select Projekt.Produktbezeichnung).ToList())[0];
+                switch (this.EinheitSpace)
+                {
                     case 1:
                         rbtn_gramm.IsChecked = true;
                         rbtn_kilogramm.IsChecked = false;
@@ -149,12 +135,12 @@ namespace BtmManager
                         break;
                 }
             }
-            
+
         }
 
         private void m_Projekt_Click(object sender, RoutedEventArgs e)
         {
-            
+
             NeuesProjekt neuesprojekt = new NeuesProjekt();
             neuesprojekt.ShowDialog();
             UpdateTreeView();
@@ -180,11 +166,43 @@ namespace BtmManager
         }
 
         private void m_übertragen_Click(object sender, RoutedEventArgs e)
+            
         {
-            //                      column                                      row
-            var n = this.DataGrid.Columns[2].GetCellContent(DataGrid.Items[0]) as TextBlock;
-            var g = n.Text;
-            int t = 0;
+            
+            using(BtmContext context = new BtmContext())
+            {
+                List<Eintrag> p = this.DataGrid.Items.OfType<Eintrag>().ToList();
+                var deleteobject = from Eintrag in context.Einträge
+                                   where Eintrag.Bezeichnung == this.BezeichnungSpace
+                                   select Eintrag; 
+
+                foreach(var ein in p)
+                {
+                    Eintrag einleer = new Eintrag()
+                    {
+                        Einheit = EinheitSpace,
+                        Bezeichnung = BezeichnungSpace,
+                        LfdNr = ein.LfdNr,
+                        Datum = ein.Datum,
+                        Anfangsbestand = ein.Anfangsbestand,
+                        TheroZugang = ein.TheroZugang,
+                        PrakZugang = ein.PrakZugang,
+                        Arbeitsverlust = ein.Arbeitsverlust,
+                        Abgang = ein.Abgang,
+                        AktuellerBestand = ein.AktuellerBestand,
+                        StufId = ein.StufId,
+                    };
+                    if(ein == p[0])
+                    {
+                        einleer.IsFirst = true;
+                    }
+                    context.Einträge.Add(einleer);
+                    context.RemoveRange(deleteobject);
+                }
+                context.SaveChanges();
+                UpdateTabelle(this.BezeichnungSpace);
+            }
+           
         }
     }
 }
