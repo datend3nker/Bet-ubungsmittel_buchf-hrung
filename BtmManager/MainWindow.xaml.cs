@@ -33,12 +33,19 @@ namespace BtmManager
 
         public void UpdateTabelle(string suche)
         {
+            if(suche == null)
+            {
+                return;
+            }
             using (BtmContext context = new BtmContext())
             {
                 var result = (from Eintrag in context.Einträge
                               where Eintrag.Bezeichnung == suche
                               select Eintrag).ToList();
                 this.DataGrid.ItemsSource = result;
+                var Markierung = from Eintrag in context.Einträge
+                                 where Eintrag.Bezeichnung == suche && Eintrag.WurdeMarkiert == true
+                                 select Eintrag;
             }
         }
 
@@ -305,6 +312,15 @@ namespace BtmManager
                 l_aktion.Content = "";
             }
             pb_progress.Value = 0;
+        }
+
+        private void m_markieren_Click(object sender, RoutedEventArgs e)
+        {
+            l_aktion.Content = "Markiere Zeile";
+            Reihe_markieren markieren = new Reihe_markieren();
+            markieren.ShowDialog();
+            this.UpdateTabelle(BezeichnungSpace);
+            l_aktion.Content = "";
         }
     }
 }
