@@ -24,6 +24,8 @@ namespace BtmManager.Models
         public float Abgang { get; set; }
         public float AktuellerBestand { get; set; }
         public string Bemerkung { get; set; }
+        public bool WurdeMarkiert { get; set; }
+        public string Farbe { get; set; }
 
         public int StufId { get; set; }
         public Stufe Stufen { get; set; }

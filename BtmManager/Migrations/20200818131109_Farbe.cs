@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BtmManager.Migrations
 {
-    public partial class first : Migration
+    public partial class Farbe : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,6 +54,7 @@ namespace BtmManager.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Einheit = table.Column<byte>(nullable: false),
                     Bezeichnung = table.Column<string>(nullable: false),
+                    IsFirst = table.Column<bool>(nullable: false),
                     LfdNr = table.Column<string>(nullable: true),
                     Datum = table.Column<DateTime>(nullable: false),
                     Anfangsbestand = table.Column<float>(nullable: false),
@@ -63,6 +64,8 @@ namespace BtmManager.Migrations
                     Abgang = table.Column<float>(nullable: false),
                     AktuellerBestand = table.Column<float>(nullable: false),
                     Bemerkung = table.Column<string>(nullable: true),
+                    WurdeMarkiert = table.Column<bool>(nullable: false),
+                    Farbe = table.Column<string>(nullable: true),
                     StufId = table.Column<int>(nullable: false),
                     StufenStufId = table.Column<int>(nullable: true)
                 },

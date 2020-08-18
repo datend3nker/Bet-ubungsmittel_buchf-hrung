@@ -203,6 +203,8 @@ namespace BtmManager
                         Abgang = ein.Abgang,
                         AktuellerBestand = ein.AktuellerBestand,
                         StufId = ein.StufId,
+                        WurdeMarkiert = ein.WurdeMarkiert,
+                        Farbe = ein.Farbe,
                     };
                     if(ein == p[0])
                     {
@@ -288,6 +290,8 @@ namespace BtmManager
                         Abgang = ein.Abgang,
                         AktuellerBestand = ein.AktuellerBestand,
                         StufId = ein.StufId,
+                        WurdeMarkiert = ein.WurdeMarkiert,
+                        Farbe = ein.Farbe,
                     };
                     if (ein == p[0])
                     {

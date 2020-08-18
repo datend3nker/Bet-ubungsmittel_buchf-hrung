@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BtmManager.Migrations
 {
     [DbContext(typeof(BtmContext))]
-    [Migration("20200815154153_secund")]
-    partial class secund
+    [Migration("20200818131109_Farbe")]
+    partial class Farbe
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,9 @@ namespace BtmManager.Migrations
                     b.Property<byte>("Einheit")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Farbe")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsFirst")
                         .HasColumnType("INTEGER");
 
@@ -66,6 +69,9 @@ namespace BtmManager.Migrations
 
                     b.Property<float>("TheroZugang")
                         .HasColumnType("REAL");
+
+                    b.Property<bool>("WurdeMarkiert")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("EintragId");
 

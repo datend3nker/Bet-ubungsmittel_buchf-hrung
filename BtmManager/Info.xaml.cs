@@ -8,7 +8,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BtmManager
@@ -16,7 +15,7 @@ namespace BtmManager
     /// <summary>
     /// Interaktionslogik für Info.xaml
     /// </summary>
-    public partial class Info : Page
+    public partial class Info : Window
     {
         public Info()
         {
