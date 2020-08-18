@@ -317,10 +317,16 @@ namespace BtmManager
         private void m_markieren_Click(object sender, RoutedEventArgs e)
         {
             l_aktion.Content = "Markiere Zeile";
-            Reihe_markieren markieren = new Reihe_markieren();
+            Reihe_markieren markieren = new Reihe_markieren(this.DataGrid);
             markieren.ShowDialog();
             this.UpdateTabelle(BezeichnungSpace);
             l_aktion.Content = "";
+        }
+
+        private void m_info_Click(object sender, RoutedEventArgs e)
+        {
+            Info info = new Info();
+            info.ShowDialog();
         }
     }
 }

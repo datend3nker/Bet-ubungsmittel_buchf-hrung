@@ -23,7 +23,7 @@
             <MenuItem Header="Werkzeuge">
                 <MenuItem x:Name="m_berechnen" Header="Berechnen" Click="btn_berechnen_Click"/>
                 <MenuItem x:Name="m_markieren" Header="Zeile markieren" Click="m_markieren_Click"/>
-                <MenuItem x:Name="m_info" Header="Info"/>
+                <MenuItem x:Name="m_info" Header="Info" Click="m_info_Click"/>
             </MenuItem>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
@@ -85,7 +85,7 @@
                     <DataGridTextColumn Header="Bemerkung" Binding="{Binding Bemerkung, ConverterCulture=de-DE}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btn_löschen" Margin="3,20,2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
+            <!--<Button x:Name="btn_Zeile_markieren" Margin="3,20,2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Zeile markieren" Click="m_markieren_Click"/>-->
             <Button x:Name="btn_speichern" Margin="2,20,2,20" Height="auto" Grid.Column="4" Grid.Row="8" Content="Speichern" Click="m_übertragen_Click"/>
             <Button x:Name="btn_berechnen" Margin="2,20,5,20" Height="auto" Grid.Column="5" Grid.Row="8" Content="Berechnen" Click="btn_berechnen_Click" />
             <Grid Grid.Column="0" Grid.Row="0">
