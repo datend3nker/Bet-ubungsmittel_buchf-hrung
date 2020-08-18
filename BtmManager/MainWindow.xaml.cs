@@ -140,48 +140,60 @@ namespace BtmManager
 
         private void m_Projekt_Click(object sender, RoutedEventArgs e)
         {
-
+            l_aktion.Content = "erstelle neues Projekt";
             NeuesProjekt neuesprojekt = new NeuesProjekt();
             neuesprojekt.ShowDialog();
             UpdateTreeView();
+            l_aktion.Content = "";
         }
 
         private void m_beenden_Click(object sender, RoutedEventArgs e)
         {
+            l_aktion.Content = "Program wird beendet";
             Application.Current.Shutdown();
         }
 
         private void m_stufe_Click(object sender, RoutedEventArgs e)
         {
+            l_aktion.Content = "erstelle neue Stufe";
             NeueStufe neuestufe = new NeueStufe();
             neuestufe.ShowDialog();
             UpdateTreeView();
+            l_aktion.Content = "";
         }
 
         private void m_logbuch_Click(object sender, RoutedEventArgs e)
         {
+            l_aktion.Content = "erstelle neues Logbuch";
             NeuerEntrag neuereintrag = new NeuerEntrag();
             neuereintrag.ShowDialog();
             UpdateTreeView();
         }
 
         private void m_übertragen_Click(object sender, RoutedEventArgs e)
-            
         {
-            
-            using(BtmContext context = new BtmContext())
+            pb_progress.Value = 0;
+            l_aktion.Content = "Daten werden Übertragen";
+            using (BtmContext context = new BtmContext())
             {
                 List<Eintrag> p = this.DataGrid.Items.OfType<Eintrag>().ToList();
+                if(p.Count == 0)
+                {
+                    l_aktion.Content = "";
+                    return;
+                }
                 var deleteobject = from Eintrag in context.Einträge
                                    where Eintrag.Bezeichnung == this.BezeichnungSpace
                                    select Eintrag; 
-
-                foreach(var ein in p)
+                context.RemoveRange(deleteobject);
+                float progress = 100 / p.Count;
+                foreach (var ein in p)
                 {
                     Eintrag einleer = new Eintrag()
                     {
                         Einheit = EinheitSpace,
                         Bezeichnung = BezeichnungSpace,
+                        EintragId = ein.EintragId,
                         LfdNr = ein.LfdNr,
                         Datum = ein.Datum,
                         Anfangsbestand = ein.Anfangsbestand,
@@ -197,12 +209,98 @@ namespace BtmManager
                         einleer.IsFirst = true;
                     }
                     context.Einträge.Add(einleer);
-                    context.RemoveRange(deleteobject);
+                    pb_progress.Value += progress;
                 }
                 context.SaveChanges();
                 UpdateTabelle(this.BezeichnungSpace);
+
             }
-           
+            l_aktion.Content = "";
+            pb_progress.Value = 0;
+        }
+
+        private void btn_berechnen_Click(object sender, RoutedEventArgs e)
+        {
+            pb_progress.Value = 0;
+            l_aktion.Content = "Tabelle wird berechnet";
+            this.speichern();
+            float calc = 0;
+            using (BtmContext context = new BtmContext())
+            {
+                List<Eintrag> p = this.DataGrid.Items.OfType<Eintrag>().ToList();
+                if (p.Count == 0)
+                {
+                    l_aktion.Content = "";
+                    return;
+                }
+                float progress = 100 / p.Count;
+                foreach (var ein in p)
+                {
+                    var entry = context.Einträge.FirstOrDefault(item => item.EintragId == ein.EintragId);
+                    
+                    var x = p[0].Equals(ein);
+                    if (!x)
+                    {
+                        entry.Anfangsbestand = calc;
+                    }
+                    entry.AktuellerBestand = entry.Anfangsbestand + entry.PrakZugang - entry.Arbeitsverlust - entry.Abgang;
+                    context.Einträge.Update(entry);
+                    context.SaveChanges();
+                    calc = entry.Anfangsbestand + entry.PrakZugang - entry.Arbeitsverlust - entry.Abgang;
+                    pb_progress.Value += progress;
+                }
+               
+            }
+            UpdateTabelle(this.BezeichnungSpace);
+            l_aktion.Content = "";
+            pb_progress.Value = 0;
+        }
+        void speichern()
+        {
+            pb_progress.Value = 0;
+            l_aktion.Content = "Datenbank wird gespeichert";
+            using (BtmContext context = new BtmContext())
+            {
+                List<Eintrag> p = this.DataGrid.Items.OfType<Eintrag>().ToList();
+                if (p.Count == 0)
+                {
+                    l_aktion.Content = "";
+                    return;
+                }
+                var deleteobject = from Eintrag in context.Einträge
+                                   where Eintrag.Bezeichnung == this.BezeichnungSpace
+                                   select Eintrag;
+                context.RemoveRange(deleteobject);
+                float progress = 100 / p.Count;
+                foreach (var ein in p)
+                {
+                    Eintrag einleer = new Eintrag()
+                    {
+                        Einheit = EinheitSpace,
+                        Bezeichnung = BezeichnungSpace,
+                        EintragId = ein.EintragId,
+                        LfdNr = ein.LfdNr,
+                        Datum = ein.Datum,
+                        Anfangsbestand = ein.Anfangsbestand,
+                        TheroZugang = ein.TheroZugang,
+                        PrakZugang = ein.PrakZugang,
+                        Arbeitsverlust = ein.Arbeitsverlust,
+                        Abgang = ein.Abgang,
+                        AktuellerBestand = ein.AktuellerBestand,
+                        StufId = ein.StufId,
+                    };
+                    if (ein == p[0])
+                    {
+                        einleer.IsFirst = true;
+                    }
+                    context.Einträge.Add(einleer);
+                    pb_progress.Value += progress;
+                }
+                context.SaveChanges();
+                UpdateTabelle(this.BezeichnungSpace);
+                l_aktion.Content = "";
+            }
+            pb_progress.Value = 0;
         }
     }
 }

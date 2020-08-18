@@ -11,6 +11,7 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
                 <MenuItem x:Name="m_laden" Header="Datenbank laden"/>
+                <MenuItem x:Name="m_neudb" Header="Datenbank erstellen"/>
                 <MenuItem x:Name="m_übertragen" Header="Daten übertragen" Click="m_übertragen_Click"/>
                 <Separator/>
                 <MenuItem x:Name="m_Projekt" Header="Neues Projekt" Click="m_Projekt_Click"/>
@@ -20,7 +21,7 @@
                 <MenuItem x:Name="m_beenden" Header="Beenden" Click="m_beenden_Click"/>
             </MenuItem>
             <MenuItem Header="Werkzeuge">
-                <MenuItem x:Name="m_berechnen" Header="Berechnen"/>
+                <MenuItem x:Name="m_berechnen" Header="Berechnen" Click="btn_berechnen_Click"/>
                 <MenuItem x:Name="m_markieren" Header="Zeile markieren"/>
                 <MenuItem x:Name="m_info" Header="Info"/>
             </MenuItem>
@@ -53,22 +54,22 @@
                     <DataGridTemplateColumn Header="Datum" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Datum, StringFormat=d}"/>
+                                <DatePicker SelectedDate="{Binding Datum, StringFormat=d, ConverterCulture=de-DE}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Anfangsbestand" Binding="{Binding Anfangsbestand}" Width="*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Thero. Zugang" Binding="{Binding TheroZugang}" Width="*"/>
-                    <DataGridTextColumn Header="Prak. Zugang" Binding="{Binding PrakZugang}" Width="*"/>
-                    <DataGridTextColumn Header="Arbeitsverlust" Binding="{Binding Arbeitsverlust}" Width="*"/>
-                    <DataGridTextColumn Header="Abgang" Binding="{Binding Abgang}" Width="*"/>
-                    <DataGridTextColumn Header="Aktueller Bestand" Binding="{Binding AktuellerBestand}" IsReadOnly="True" Width="*"/>
-                    <DataGridTextColumn Header="Bemerkung" Binding="{Binding Bemerkung}" Width="*"/>
+                    <DataGridTextColumn Header="Anfangsbestand" Binding="{Binding Anfangsbestand, ConverterCulture=de-DE}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Thero. Zugang" Binding="{Binding TheroZugang, ConverterCulture=de-DE}" Width="*"/>
+                    <DataGridTextColumn Header="Prak. Zugang" Binding="{Binding PrakZugang, ConverterCulture=de-DE}" Width="*"/>
+                    <DataGridTextColumn Header="Arbeitsverlust" Binding="{Binding Arbeitsverlust, ConverterCulture=de-DE}" Width="*"/>
+                    <DataGridTextColumn Header="Abgang" Binding="{Binding Abgang, ConverterCulture=de-DE}" Width="*"/>
+                    <DataGridTextColumn Header="Aktueller Bestand" Binding="{Binding AktuellerBestand, ConverterCulture=de-DE}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Bemerkung" Binding="{Binding Bemerkung, ConverterCulture=de-DE}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btn_löschen" Margin="3,20,2,20" Height="auto" Grid.Column="3" Grid.Row="8" Content="Letzten Eintrag löschen"/>
             <Button x:Name="btn_speichern" Margin="2,20,2,20" Height="auto" Grid.Column="4" Grid.Row="8" Content="Speichern" Click="m_übertragen_Click"/>
-            <Button x:Name="btn_berechnen" Margin="2,20,5,20" Height="auto" Grid.Column="5" Grid.Row="8" Content="Berechnen" />
+            <Button x:Name="btn_berechnen" Margin="2,20,5,20" Height="auto" Grid.Column="5" Grid.Row="8" Content="Berechnen" Click="btn_berechnen_Click" />
             <Grid Grid.Column="0" Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
