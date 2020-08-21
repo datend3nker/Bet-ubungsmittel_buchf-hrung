@@ -8,10 +8,14 @@
 
   <ItemGroup>
     <None Remove="Resources\DatenDenker.png" />
+    <None Remove="Resources\index.jfif" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\DatenDenker.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\index.jfif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -30,9 +34,6 @@
 
   <ItemGroup>
     <None Update="BtmDB.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\index.jfif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

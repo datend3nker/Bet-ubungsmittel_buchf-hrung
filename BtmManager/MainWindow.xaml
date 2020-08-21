@@ -10,8 +10,8 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
-                <MenuItem x:Name="m_laden" Header="Datenbank laden"/>
-                <MenuItem x:Name="m_neudb" Header="Datenbank erstellen"/>
+                <!--<MenuItem x:Name="m_laden" Header="Datenbank laden"/>
+                <MenuItem x:Name="m_neudb" Header="Datenbank erstellen"/>-->
                 <MenuItem x:Name="m_übertragen" Header="Daten übertragen" Click="m_übertragen_Click"/>
                 <Separator/>
                 <MenuItem x:Name="m_Projekt" Header="Neues Projekt" Click="m_Projekt_Click"/>
@@ -46,7 +46,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TreeView x:Name="TreeView" Margin="5,0,5,10" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding Projekt}"/>
+            <TreeView x:Name="TreeView" Margin="5,0,5,10" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding Projekt}">
+            </TreeView>
             <DataGrid x:Name="DataGrid" Margin="5,5,5,10" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True" 
                       CanUserSortColumns="True" IsReadOnly="False" AlternatingRowBackground="LightGray" FontSize="14" >
                 <DataGrid.RowStyle>

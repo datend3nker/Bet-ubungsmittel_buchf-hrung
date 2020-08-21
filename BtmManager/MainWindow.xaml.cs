@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,9 @@ namespace BtmManager
         public string BezeichnungSpace;
         public byte EinheitSpace;
         public int StufIdSpace;
+        public string Produktbezeichnung;
+        public string MaterialName;
+        public string Bezeichnung;
         public MainWindow()
         {
             InitializeComponent();
@@ -57,20 +61,32 @@ namespace BtmManager
                 var pro = (from Projekt in context.Projekte select Projekt).ToList();
                 var stu = (from Stufe in context.Stufen select Stufe).ToList();
                 var ein = (from Eintrag in context.Einträge select Eintrag).ToList();
+
+
                 foreach (var proj in pro)
                 {
+                    ContextMenu contextProject = new ContextMenu();
+                    MenuItem itemProject = new MenuItem();
                     TreeViewItem newProject = new TreeViewItem
                     {
                         Header = proj.Produktbezeichnung
                     };
+                    this.Produktbezeichnung = proj.Produktbezeichnung;
                     foreach (var stuf in stu)
                     {
                         if (stuf.ProjektId == proj.ProjektId)
                         {
+                            ContextMenu contextStufe = new ContextMenu();
+                            MenuItem itemStufe = new MenuItem();
                             TreeViewItem newStufe = new TreeViewItem
                             {
                                 Header = stuf.MaterialName
                             };
+                            this.MaterialName = stuf.MaterialName;
+                            itemStufe.Header = "Löschen";
+                            itemStufe.Click += Stufe_Löschen;
+                            contextStufe.Items.Add(itemStufe);
+                            newStufe.ContextMenu = contextStufe;
                             newProject.Items.Add(newStufe);
                             foreach (var eint in ein)
                             {
@@ -78,10 +94,17 @@ namespace BtmManager
                                 {
                                     if (eint.IsFirst == true)
                                     {
+                                        ContextMenu contextEintrag = new ContextMenu();
+                                        MenuItem itemEintrag = new MenuItem();
                                         TreeViewItem newEintrag = new TreeViewItem
                                         {
                                             Header = eint.Bezeichnung,
                                         };
+                                        this.Bezeichnung = eint.Bezeichnung;
+                                        itemEintrag.Header = "Löschen";
+                                        itemEintrag.Click += Eintrag_Löschen;
+                                        contextEintrag.Items.Add(itemEintrag);
+                                        newEintrag.ContextMenu = contextEintrag;
                                         newEintrag.Selected += NewEintrag_Selected;
                                         newStufe.Items.Add(newEintrag);
                                     }
@@ -90,6 +113,10 @@ namespace BtmManager
                         }
 
                     }
+                    itemProject.Header = "Löschen";
+                    itemProject.Click += Projekt_Löschen;
+                    contextProject.Items.Add(itemProject);
+                    newProject.ContextMenu = contextProject;
                     TreeView.Items.Add(newProject);
                 }
             }
@@ -327,6 +354,94 @@ namespace BtmManager
         {
             Info info = new Info();
             info.ShowDialog();
+        }
+
+
+        private void Projekt_Löschen(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Alle dazugehörigen Stufen und Einträge werden unwiderruflich gelöscht!!! \n Sind sie sicher?", "Warnung", MessageBoxButton.OKCancel);
+            switch (result)
+            {
+                case MessageBoxResult.OK:
+                    using (BtmContext context = new BtmContext())
+            {
+                var deleteProject = from Projekt in context.Projekte
+                                    where Projekt.Produktbezeichnung == this.Produktbezeichnung
+                                    select Projekt;
+                var deleteProjectlist = (from Projekt in context.Projekte
+                                    where Projekt.Produktbezeichnung == this.Produktbezeichnung
+                                    select Projekt).ToList();
+                var deleteStufe = from Stufe in context.Stufen
+                                    where Stufe.ProjektId == deleteProjectlist[0].ProjektId
+                                    select Stufe;
+                var deleteStufelist = (from Stufe in context.Stufen
+                                  where Stufe.ProjektId == deleteProjectlist[0].ProjektId
+                                  select Stufe).ToList();
+                var deleteEintrag = from Eintrag in context.Einträge
+                                  where Eintrag.StufId == deleteStufelist[0].StufId
+                                  select Eintrag;
+
+                context.RemoveRange(deleteProject);
+                context.RemoveRange(deleteStufe);
+                context.RemoveRange(deleteEintrag);
+                context.SaveChanges();
+            }
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+            }
+            this.UpdateTreeView();            
+        }
+
+        private void Stufe_Löschen(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Alle dazugehörigen Logbücher werden unwiderruflich gelöscht!!! \n Sind sie sicher?", "Warnung", MessageBoxButton.OKCancel);
+            switch (result)
+            {
+                case MessageBoxResult.OK:
+                    using (BtmContext context = new BtmContext())
+                    {
+                        var deleteStufe = from Stufe in context.Stufen
+                                          where Stufe.MaterialName == this.MaterialName
+                                          select Stufe;
+                        var deleteStufelist = (from Stufe in context.Stufen
+                                               where Stufe.MaterialName == this.MaterialName
+                                               select Stufe).ToList();
+                        var deleteEintrag = from Eintrag in context.Einträge
+                                            where Eintrag.StufId == deleteStufelist[0].StufId
+                                            select Eintrag;
+
+                        context.RemoveRange(deleteStufe);
+                        context.RemoveRange(deleteEintrag);
+                        context.SaveChanges();
+                    }
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+            }
+            this.UpdateTreeView();
+        }
+
+        private void Eintrag_Löschen(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Dieses Logbuch wird unwiderruflich gelöscht!!! \n Sind sie sicher?", "Warnung", MessageBoxButton.OKCancel);
+            switch (result)
+            {
+                case MessageBoxResult.OK:
+                    using (BtmContext context = new BtmContext())
+                    {
+                        var deleteEintrag = from Eintrag in context.Einträge
+                                            where Eintrag.Bezeichnung == this.Bezeichnung
+                                            select Eintrag;
+
+                        context.RemoveRange(deleteEintrag);
+                        context.SaveChanges();
+                    }
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+            }
+            this.UpdateTreeView();
         }
     }
 }
